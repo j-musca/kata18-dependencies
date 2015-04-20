@@ -17,16 +17,14 @@ public class Dependencies {
         dependenciesMap = new HashMap<>();
     }
 
-    public void addDirect(final char component, final Collection<Character> dependencies) {
+    public void add(final char component, final Collection<Character> dependencies) {
         dependenciesMap.putIfAbsent(component, new HashSet<>());
         dependenciesMap.get(component).addAll(dependencies);
     }
 
-    public String getDependenciesFor(final char component) {
+    public String getDependencies(final char component) {
         final Set<Character> allDependencies = new TreeSet<>(findDependencies(component, new HashSet<>()));
-
         allDependencies.remove(component);
-
         return Joiner.on(' ').join(allDependencies);
     }
 

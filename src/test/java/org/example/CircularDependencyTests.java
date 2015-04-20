@@ -14,23 +14,23 @@ public class CircularDependencyTests {
     public void setUp() throws Exception {
         dependencies = new Dependencies();
 
-        dependencies.addDirect('A', Lists.newArrayList('B'));
-        dependencies.addDirect('B', Lists.newArrayList('C'));
-        dependencies.addDirect('C', Lists.newArrayList('A'));
+        dependencies.add('A', Lists.newArrayList('B'));
+        dependencies.add('B', Lists.newArrayList('C'));
+        dependencies.add('C', Lists.newArrayList('A'));
     }
 
     @Test
     public void testComponentA() {
-        assertThat(dependencies.getDependenciesFor('A')).isEqualTo("B C");
+        assertThat(dependencies.getDependencies('A')).isEqualTo("B C");
     }
 
     @Test
     public void testComponentB() {
-        assertThat(dependencies.getDependenciesFor('B')).isEqualTo("A C");
+        assertThat(dependencies.getDependencies('B')).isEqualTo("A C");
     }
 
     @Test
     public void testComponentC() {
-        assertThat(dependencies.getDependenciesFor('C')).isEqualTo("A B");
+        assertThat(dependencies.getDependencies('C')).isEqualTo("A B");
     }
 }

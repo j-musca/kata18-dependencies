@@ -13,46 +13,46 @@ public class DependencyTests {
     public void setUp() throws Exception {
         dependencies = new Dependencies();
 
-        dependencies.addDirect('A', Lists.newArrayList('B', 'C'));
-        dependencies.addDirect('B', Lists.newArrayList('C', 'E'));
-        dependencies.addDirect('C', Lists.newArrayList('G'));
-        dependencies.addDirect('D', Lists.newArrayList('A', 'F'));
-        dependencies.addDirect('E', Lists.newArrayList('F'));
-        dependencies.addDirect('F', Lists.newArrayList('H'));
+        dependencies.add('A', Lists.newArrayList('B', 'C'));
+        dependencies.add('B', Lists.newArrayList('C', 'E'));
+        dependencies.add('C', Lists.newArrayList('G'));
+        dependencies.add('D', Lists.newArrayList('A', 'F'));
+        dependencies.add('E', Lists.newArrayList('F'));
+        dependencies.add('F', Lists.newArrayList('H'));
     }
 
     @Test
     public void testComponentA() {
-        assertThat(dependencies.getDependenciesFor('A')).isEqualTo("B C E F G H");
+        assertThat(dependencies.getDependencies('A')).isEqualTo("B C E F G H");
     }
 
     @Test
     public void testComponentB() {
-        assertThat(dependencies.getDependenciesFor('B')).isEqualTo("C E F G H");
+        assertThat(dependencies.getDependencies('B')).isEqualTo("C E F G H");
     }
 
     @Test
     public void testComponentC() {
-        assertThat(dependencies.getDependenciesFor('C')).isEqualTo("G");
+        assertThat(dependencies.getDependencies('C')).isEqualTo("G");
     }
 
     @Test
     public void testComponentD() {
-        assertThat(dependencies.getDependenciesFor('D')).isEqualTo("A B C E F G H");
+        assertThat(dependencies.getDependencies('D')).isEqualTo("A B C E F G H");
     }
 
     @Test
     public void testComponentE() {
-        assertThat(dependencies.getDependenciesFor('E')).isEqualTo("F H");
+        assertThat(dependencies.getDependencies('E')).isEqualTo("F H");
     }
 
     @Test
     public void testComponentF() {
-        assertThat(dependencies.getDependenciesFor('F')).isEqualTo("H");
+        assertThat(dependencies.getDependencies('F')).isEqualTo("H");
     }
 
     @Test
     public void testComponentG() {
-        assertThat(dependencies.getDependenciesFor('G')).isEqualTo("");
+        assertThat(dependencies.getDependencies('G')).isEqualTo("");
     }
 }
