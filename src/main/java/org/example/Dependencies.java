@@ -23,9 +23,9 @@ public class Dependencies {
     }
 
     public String getDependencies(final char component) {
-        final Set<Character> allDependencies = new TreeSet<>(findDependencies(component, new HashSet<>()));
-        allDependencies.remove(component);
-        return Joiner.on(' ').join(allDependencies);
+        final Set<Character> dependencies = new TreeSet<>(findDependencies(component, new HashSet<>()));
+        dependencies.remove(component);
+        return Joiner.on(' ').join(dependencies);
     }
 
     private Set<Character> findDependencies(final char component, final Set<Character> alreadyVisitedComponents) {
